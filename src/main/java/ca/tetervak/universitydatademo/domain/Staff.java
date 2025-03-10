@@ -23,6 +23,9 @@ public class Staff {
 
     protected Staff() {
     }
+    public void setMember(Person member) {
+        this.member = member;
+    }
 
     public Person getMember() {
         return member;

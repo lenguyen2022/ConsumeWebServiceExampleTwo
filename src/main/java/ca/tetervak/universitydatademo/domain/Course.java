@@ -22,6 +22,7 @@ public class Course {
     @Column
     private Integer credits;
 
+    //Bugs!
     @OneToOne
     private Staff instructor;
 
@@ -51,6 +52,9 @@ public class Course {
 
     public Staff getInstructor() {
         return instructor;
+    }
+    public void setInstructor(Staff instructor) {
+        this.instructor = instructor;
     }
 
     public Department getDepartment() {
