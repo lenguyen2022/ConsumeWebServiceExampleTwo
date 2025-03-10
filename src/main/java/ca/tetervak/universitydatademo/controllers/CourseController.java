@@ -8,24 +8,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 public class CourseController {
     private CourseRepository courseRepository;
+
     public CourseController(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
+
     @GetMapping("/courses")
     public Iterable<Course> getAllCourses() {
         return courseRepository.findAll();
     }
+
     @PutMapping(value = "/course", consumes = "application/json")
-    public Course addCourse(@RequestBody Course course) {
-        return courseRepository.save(course);
+    public String addCourse(@RequestBody Course course) {
+
+        Logger log = Logger.getLogger("CourseController");
+        log.info("Adding course: " + course);
+        courseRepository.save(course);
+
+        return "Course";
     }
+
     @PutMapping(value = "/courses", consumes = "application/json")
     public String addCourses(@RequestBody List<Course> courses) {
-        courseRepository.saveAll(courses);
+        //courseRepository.saveAll(courses);
         return "Number of courses added: " + courses.size();
     }
 }

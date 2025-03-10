@@ -14,15 +14,16 @@ import java.util.List;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ID")
     private Integer id;
 
-    @Column
+    @Column(name="NAME")
     private String name;
 
-    @Column
+    @Column(name="CREDITS")
     private Integer credits;
 
-    //Bugs!
+
     @OneToOne
     private Staff instructor;
 
@@ -37,6 +38,14 @@ public class Course {
         this.credits = credits;
         this.instructor = instructor;
         this.department = department;
+    }
+
+    public Integer getCredits() {
+        return credits;
+    }
+
+    public void setCredits(Integer credits) {
+        this.credits = credits;
     }
 
     protected Course() {

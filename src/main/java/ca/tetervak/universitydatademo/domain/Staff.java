@@ -23,6 +23,15 @@ public class Staff {
 
     protected Staff() {
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public void setMember(Person member) {
         this.member = member;
     }
