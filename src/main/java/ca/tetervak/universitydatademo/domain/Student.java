@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "student")
 public class Student {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer studentId;
 
     @Embedded
@@ -25,7 +25,7 @@ public class Student {
     @Column
     private Integer age;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Course> courses = new ArrayList<>();
 
     public Student(Person attendee, boolean fullTime, Integer age) {

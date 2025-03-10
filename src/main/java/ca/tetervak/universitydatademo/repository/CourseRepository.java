@@ -19,6 +19,7 @@ import java.util.Optional;
  */
 public interface CourseRepository extends CrudRepository<Course,Integer> {
 
+
     Optional<Course> findByName(String name);
 
     List<Course> findByDepartmentChairMemberLastName(String chair);

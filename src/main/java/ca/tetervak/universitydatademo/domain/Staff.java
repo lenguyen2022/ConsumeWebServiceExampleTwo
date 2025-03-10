@@ -11,7 +11,7 @@ import jakarta.persistence.*;
 @Table(name="staff_member")
 public class Staff {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Embedded
