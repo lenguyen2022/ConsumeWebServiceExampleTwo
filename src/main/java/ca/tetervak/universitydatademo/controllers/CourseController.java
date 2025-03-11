@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 @RestController
 public class CourseController {
-    private CourseRepository courseRepository;
+    private final CourseRepository  courseRepository;
 
     public CourseController(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
@@ -35,7 +35,7 @@ public class CourseController {
 
     @PutMapping(value = "/courses", consumes = "application/json")
     public String addCourses(@RequestBody List<Course> courses) {
-        //courseRepository.saveAll(courses);
+        courseRepository.saveAll(courses);
         return "Number of courses added: " + courses.size();
     }
 }
