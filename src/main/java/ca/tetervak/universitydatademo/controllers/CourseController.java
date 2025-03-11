@@ -20,8 +20,9 @@ public class CourseController {
         return courseRepository.findAll();
     }
     @PutMapping(value = "/course", consumes = "application/json")
-    public Course addCourse(@RequestBody Course course) {
-        return courseRepository.save(course);
+    public String addCourse(@RequestBody Course course) {
+        courseRepository.save(course);
+        return "Course" + course + "added";
     }
     @PutMapping(value = "/courses", consumes = "application/json")
     public String addCourses(@RequestBody List<Course> courses) {

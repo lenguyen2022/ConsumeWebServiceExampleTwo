@@ -1,6 +1,10 @@
 package ca.tetervak.universitydatademo.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +15,8 @@ import java.util.List;
  */
 @Entity
 @Table(name = "department")
+
+
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,36 +32,46 @@ public class Department {
             cascade = CascadeType.ALL)
     private List<Course> courses = new ArrayList<>();
 
-    public Department(String name, Staff chair) {
-        this.name = name;
-        this.chair = chair;
-    }
-
-    protected Department() {
-    }
-
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void addCourse(Course course) {
-        courses.add(course);
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Staff getChair() {
+        return chair;
     }
 
     public void setChair(Staff chair) {
         this.chair = chair;
     }
 
+    public List<Course> getCourses() {
+        return courses;
+    }
+
     public void setCourses(List<Course> courses) {
         this.courses = courses;
+    }
+
+    public Department() {}
+    public Department(String name, Staff chair) {
+        this.name = name;
+        this.chair = chair;
+    }
+
+    public void addCourse(Course course) {
+        courses.add(course);
     }
 
     @Override

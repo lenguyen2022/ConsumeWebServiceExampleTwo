@@ -1,6 +1,10 @@
 package ca.tetervak.universitydatademo.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +15,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "course")
+
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +27,7 @@ public class Course {
     @Column
     private Integer credits;
 
-    //Bugs!
+
     @OneToOne
     private Staff instructor;
 
@@ -32,33 +37,61 @@ public class Course {
     @ManyToOne
     private Department department;
 
-    public Course(String name, Integer credits, Staff instructor, Department department) {
-        this.name = name;
-        this.credits = credits;
-        this.instructor = instructor;
-        this.department = department;
-    }
-
-    protected Course() {
-    }
-
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getCredits() {
+        return credits;
+    }
+
+    public void setCredits(Integer credits) {
+        this.credits = credits;
+    }
+
     public Staff getInstructor() {
         return instructor;
     }
+
     public void setInstructor(Staff instructor) {
         this.instructor = instructor;
     }
 
+    public List<Course> getPrerequisites() {
+        return prerequisites;
+    }
+
+    public void setPrerequisites(List<Course> prerequisites) {
+        this.prerequisites = prerequisites;
+    }
+
     public Department getDepartment() {
         return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Course() {}
+
+    public Course(String name, Integer credits, Staff instructor, Department department) {
+        this.name = name;
+        this.credits = credits;
+        this.instructor = instructor;
+        this.department = department;
     }
 
     public Course addPrerequisite(Course prerequisite) {
@@ -74,7 +107,7 @@ public class Course {
                 ", id=" + id +
                 ", credits=" + credits +
                 ", instructor=" + instructor +
-                ", department=" + department.getName() +
+                ", department=" + department +
                 '}';
     }
 }

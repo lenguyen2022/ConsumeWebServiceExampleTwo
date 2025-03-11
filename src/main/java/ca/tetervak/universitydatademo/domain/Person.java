@@ -2,6 +2,11 @@ package ca.tetervak.universitydatademo.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * Person encapsulates an individual's first and last name.
@@ -9,7 +14,7 @@ import jakarta.persistence.Embeddable;
  * Created by maryellenbowman
  */
 @Embeddable
-public class Person {
+public class Person implements Serializable {
     @Column
     private String firstName;
 
@@ -20,16 +25,22 @@ public class Person {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
-    protected Person() {
-    }
+    public Person() {}
 
     public String getFirstName() {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
