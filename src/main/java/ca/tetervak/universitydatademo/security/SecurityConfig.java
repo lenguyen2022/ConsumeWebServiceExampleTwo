@@ -15,29 +15,32 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    //set up an admin user with an admin role
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager(PasswordEncoder passwordEncoder) {
         UserDetails user = User.withUsername("admin")
                 .password(passwordEncoder.encode("admin"))
                 .roles("ADMIN").build();
-
         return new InMemoryUserDetailsManager(user);
     }
-
+    //Set up the Security filter chain
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
 
-        http.authorizeHttpRequests(authorizeRequests ->
-                authorizeRequests.anyRequest().authenticated())
+        http.csrf().disable(); //disable csrf protection
+        http.headers().frameOptions().disable(); // prevent header added to response
+        http.authorizeHttpRequests(authorizeRequests
+                        -> authorizeRequests.anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults());
         return http.build();
     }
-
+    //set up the Password Encoder
     @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder();
+    public PasswordEncoder getPasswordEncoder() { return new BCryptPasswordEncoder();}
+
+    @Bean(name = "funBean")
+    public String funBean(){
+        return "funBean Example";
     }
 }
