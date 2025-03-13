@@ -1,5 +1,6 @@
 package ca.tetervak.universitydatademo.controllers;
 
+import ca.tetervak.universitydatademo.domain.Hello;
 import ca.tetervak.universitydatademo.domain.Student;
 import ca.tetervak.universitydatademo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class StudentController {
     private StudentRepository studentRepository;
     @Autowired
     private String funBean;
+    @Autowired
+    private Hello hello;
 
     public StudentController(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
@@ -25,6 +28,8 @@ public class StudentController {
     public Iterable<Student> getStudent(){
         Logger logger = Logger.getLogger(funBean);
         logger.info(funBean);
+        hello.setName("Hello From StudentController");
+        logger.info("Message = " + hello.getName());
         return this.studentRepository.findAll();
     }
     @PutMapping(value = "/student", consumes = "application/json")

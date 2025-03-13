@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class UniversityDataDemoApplication implements CommandLineRunner {
@@ -28,6 +29,11 @@ public class UniversityDataDemoApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(UniversityDataDemoApplication.class, args);
+    }
+
+    @Bean
+    public Hello getHello(){
+        return new Hello();
     }
 
     @Override
