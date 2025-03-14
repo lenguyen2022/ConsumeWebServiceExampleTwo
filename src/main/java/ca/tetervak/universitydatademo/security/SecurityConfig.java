@@ -26,9 +26,10 @@ public class SecurityConfig {
     //Set up the Security filter chain
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
+        //Disable these protection will allow access to H2-Console.
         http.csrf().disable(); //disable csrf protection
         http.headers().frameOptions().disable(); // prevent header added to response
+
         http.authorizeHttpRequests(authorizeRequests
                         -> authorizeRequests.anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
